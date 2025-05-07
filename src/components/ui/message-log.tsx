@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useMqtt } from '@/lib/useMqtt'
+import { useMqtt } from '@/lib/usemqtt'
 
 type Message = {
   content: string
