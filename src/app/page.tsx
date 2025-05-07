@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Popover, PopoverTrigger, PopoverContent } from '@radix-ui/react-popover'
 import { Button } from '@/components/ui/button'
 import { User as UserIcon } from 'lucide-react'
+import MessageLog from '@/components/ui/message-log'
 
 const AssetColumn = ({
   title,
@@ -22,8 +23,8 @@ const AssetColumn = ({
       <Image
         src={imageSrc}
         alt={`${title} image`}
-        width={110}
-        height={110}
+        width={130}
+        height={130}
         className="mb-3 rounded object-contain"
       />
     ) : (
@@ -102,6 +103,41 @@ export default function Header() {
           </div>
         </div>
       </section>
+
+      <section className="px-6 py-6">
+    ` <div className="flex gap-6">
+        {/* Current Process Panel */}
+        <div className="flex-[0.6] bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-md p-6 text-white space-y-2 border border-cyan-700">
+          <h3 className="text-xl font-bold mb-4 text-white">Current Process</h3>
+          <p><span className="font-medium">Process Type:</span> </p>
+          <p><span className="font-medium">Hole ID:</span> </p>
+          <p><span className="font-medium">Feed Rate:</span> </p>
+          <p><span className="font-medium">Spindle Speed:</span> </p>
+          <p><span className="font-medium">Part ID:</span> </p>
+          <p><span className="font-medium">Material Stack:</span> </p>
+        </div>
+
+        {/* Side Metrics */}
+        <div className="flex flex-col gap-4 flex-[0.4]">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-md p-4 text-white text-center border border-cyan-700">
+            <h4 className="text-md font-bold">Cycles to Next Drill Bit Change</h4>
+          </div>
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-md p-4 text-white text-center border border-cyan-700">
+            <h4 className="text-md font-bold">No. of Cycles Completed</h4>
+          </div>
+        </div>
+
+        {/* MEssage Log*/}
+        <div className="flex-[0.6] bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-md p-6 text-white space-y-2 border border-cyan-700">
+        <h3 className='text-xl font-bold mb-4 text-white'>Message Log</h3>
+        <MessageLog />
+
+        </div>
+      </div>
+
+
+    </section>`
+
     </main>
   )
 }
