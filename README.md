@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Process Intelligence Module ##
 
-First, run the development server:
+# PLAN #
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Some form of data storage is going to be needed in this service
+- An MQTT subscriber is also required to retreive the data being sent between services
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Data Required - Data that needs to be retrieved from one of the other services
+- Current Robotic Asset
+- Cell ID
+- Recipe ID
+- Tool ID
+- Process
+- Hole position
+- Spindle Speed
+- Feed Rate
+- Cycle time - This can be calculated from the time between the message with the parameters being sent to the drill complete message
+- Message Log - Create a new MQTT topic, each service publishes an update and this module will subscribe to these and present them
+- Cycles to Tool Change - need to know how many holes this tool has drilled - dependent on tool id. Cycles to tool change should be a   value in the DB. AWKWARD - Leave for now
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+# Fixed Values
+- In process part and Part Id
+- User name, ID and other details
+- End Effector
 
-To learn more about Next.js, take a look at the following resources:
+# Main UI components
+HEADER:
+- Process Intelligence Title
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- User Icon with popover
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ASSET TAB:
+- Drilling Cell -> Cell ID
+- Asset Pictures - dependent on asset selection - drill end effector will be fixed
 
-## Deploy on Vercel
+PART TAB:
+- Picture and Part ID will be fixed
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+CURRENT PROCESS:
+- All the parameters of the current process published from the UI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TOOL CHANGE:
+- query tool table in the DB to determine this value
+
+CELL STATUS TAB:
+- Status:
+    - Ready
+    - Drilling In Progress
+    - Fault
+
+MESSAGE LOG:
+- Log of the cells events. 
+
